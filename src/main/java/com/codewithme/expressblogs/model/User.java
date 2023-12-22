@@ -21,16 +21,19 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String logoUrl;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
     public User(){}
 
-    public User(Long userId, String username, String email, String password, Date createdAt){
+    public User(Long userId, String username, String email, String password, String logoUrl, Date createdAt){
         this.userId = userId;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.logoUrl = logoUrl;
         this.createdAt = createdAt != null ? new Date(createdAt.getTime()) : new Date();
         
     }
@@ -40,6 +43,9 @@ public class User {
         "userid=" + userId +
         ", username='" + username +
         ", email= " + email +
-        ", created_at= " + createdAt+"}";
+        ", logoUrl= " + logoUrl +
+        ", created_at= " + createdAt+
+        '}';
+
     }
 }
