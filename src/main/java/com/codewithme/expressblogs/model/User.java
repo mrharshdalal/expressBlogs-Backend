@@ -2,6 +2,7 @@ package com.codewithme.expressblogs.model;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,39 +14,63 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-    private String username;
-    private String email;
-    private String password;
-    private String logoUrl;
+    private Long userid;
 
+    @Column(name = "fullname")
+    private String fullname;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "gender")
+    private String gender;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "logourl")
+    private String logourl;
+
+    @Column(name = "createdat")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    public User(){}
+    // Constructors, getters, setters, and toString method
 
-    public User(Long userId, String username, String email, String password, String logoUrl, Date createdAt){
-        this.userId = userId;
-        this.username = username;
+    public User() {
+    }
+
+    public User(Long userId, String fullname, String email, String username, String gender, String password,
+            String logoUrl, Date createdAt) {
+        this.userid = userId;
+        this.fullname = fullname;
         this.email = email;
+        this.username = username;
+        this.gender = gender;
         this.password = password;
-        this.logoUrl = logoUrl;
+        this.logourl = logoUrl;
         this.createdAt = createdAt != null ? new Date(createdAt.getTime()) : new Date();
-        
-    }
-    @Override
-    public String toString(){
-        return "User{" + 
-        "userid=" + userId +
-        ", username='" + username +
-        ", email= " + email +
-        ", logoUrl= " + logoUrl +
-        ", created_at= " + createdAt+
-        '}';
 
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userid +
+                ", fullname='" + fullname + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", gender='" + gender + '\'' +
+                ", logourl='" + logourl + '\'' +
+                ", created_at=" + createdAt +
+                '}';
+    }
+
 }
