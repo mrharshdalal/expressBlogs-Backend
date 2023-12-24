@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -23,7 +24,7 @@ public class User {
     @Column(name = "fullname")
     private String fullname;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "username")
@@ -38,9 +39,15 @@ public class User {
     @Column(name = "logourl")
     private String logourl;
 
-    @Column(name = "createdat")
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "createdat")
     private Date createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = new Date();
+    }
+
 
     // Constructors, getters, setters, and toString method
 
